@@ -46,15 +46,20 @@ Redshift Cluster Design
 -----------------------
 
 Cluster name    : sibyredshift
+
 Type            : dc2.large
+
 Nodes           : 1
 
 Datamodel Design
 ----------------
 
 DWH schema used   : Star
+
 Staging table     : STAGING_LISTINGS, STAGING_REVIEWS
+
 Fact              : LISTINGS
+
 Dimenstions       : HOSTS, LISTING_ADDRESS, LISTING_REVIEW, LISTING_PROPERTY_TYPE, LISTING_ROOM_TYPE
 
 Fact and Dimension Table Description
@@ -65,94 +70,35 @@ LISTINGS
 
 This table records all the objects that are listed. It contains details like lisitngId, ListingType, HostId  etc.
 
-column name          DataType   Null?  Length
------------          --------   -----  ------
-listing_id	            int4	false	10
-listing_url	            varchar	true	256
-host_id	                int4	false	10
-listing_property_type	int4	false	10
-listing_room_type	    int4	false	10
-no_of_bedrooms	        float8	true	17
-no_of_bathrooms	        float8	true	17
-no_of_beds	            float8	true	17
-listing_size_sqft	    float8	true	17
-listing_daily_price	    float8	true	17
-listing_weekly_price	float8	true	17
-listing_monthly_price	float8	true	17
-listing_security_depositfloat8	true	17
-listing_cleaning_fees	float8	true	17
-maximum_guests	        int4	true	10
-maximum_nights	        int4	true	10
-no_of_reviews	        int4	false	10
-review_score_max_10	    int4	true	10
-available_outof_365	    int4	true	10
+
 
 HOSTS
 -----
-
 This table has the list of all the hosts available in the Airbnb. It has the details like hostid, host name, host address etc.
 
-Column Name          Data type  Null? Length
------------         ----------  ----   -----
-host_id	                int4	false	10
-host_url	            varchar	true	256
-host_name	            varchar	false	256 
-host_since	            date	false	13
-host_about	            varchar	true	65535
-host_location	        varchar	true	256
-host_is_superhost	    bool	false	1
-host_listings_count	    int4	true	10
-host_identity_verified	bool	false	1
+![hosts](https://user-images.githubusercontent.com/63420444/78940584-5f50f880-7ab6-11ea-87da-cfa578fe1e5f.JPG)
+
 
 LISTING_ADDRESS
 --------------
 
 This table has the address details of all the objects listed in Airbnb.#
 
-Coulmn Name     DataType    NUll? Length
------------     --------    ----- ------
-adrress_id	     int4	    false	10
-listing_id	     int4	    false	10
-area	         varchar	true	256
-city	         varchar	true	256
-state	         varchar	true	256
-zipcode	         varchar	false	256
-country	         varchar	false	256
-latitude	     numeric	true	18
-longitude	     numeric	true	18
-
 LISTING_REVIEW
 --------------
 
 This table has the details of all the reviews made by the customers on the listing.
-
-Column Name    DataType Null?  Length
------------    -------- ----   ------
-listing_id	    int4	false	10
-review_id	    int4	false	10
-review_date	    date	true	13
-reviewer_id	    int4	false	10
-reviewer_name	varchar	true	256
-review_comments	varchar	false	65535
 
 
 LISTING_PROPERTY_TYPE
 ---------------------
 This table holds the details of the type of properties available in Airbnb.
 
-Column Name       DataType  Null?  Length
------------       --------  -----  ------
-property_type_id	int4	false	10
-property_type	    varchar	false	256
 
 LISTING_ROOM_TYPE
 -----------------
 This table holds the details of the type of rooms available in Airbnb.
 
-Column Name    DataType Null?  Length
------------    -------- ----   ------
-room_type_id	int4	false	10
-room_type	    varchar	false	256
 
 
 DAG DESIGN
@@ -165,7 +111,7 @@ Catchup           : False
 depends_on_past   : False
 Retries           : 3 times (Every 5 mins)
 
-![Image](DAG.jpg)
+![DAG](https://user-images.githubusercontent.com/63420444/78940160-b0142180-7ab5-11ea-94b7-a13013988f41.JPG)
 
 Create Tables            : This step creates all the tables needed for the ETL process.
 Stage Listing            : This step loads all the listing data into the staging_listings table.
