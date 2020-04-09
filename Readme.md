@@ -72,6 +72,7 @@ This table records all the objects that are listed. It contains details like lis
 
 
 
+
 HOSTS
 -----
 This table has the list of all the hosts available in the Airbnb. It has the details like hostid, host name, host address etc.
@@ -81,18 +82,25 @@ This table has the list of all the hosts available in the Airbnb. It has the det
 
 LISTING_ADDRESS
 --------------
+This table has the address details of all the objects listed in Airbnb.
 
-This table has the address details of all the objects listed in Airbnb.#
+![address](https://user-images.githubusercontent.com/63420444/78940961-06359480-7ab7-11ea-92b4-a3a11436f529.JPG)
+
 
 LISTING_REVIEW
 --------------
-
 This table has the details of all the reviews made by the customers on the listing.
+
+![review](https://user-images.githubusercontent.com/63420444/78941063-37ae6000-7ab7-11ea-9591-ca9b9785f94e.JPG)
+
 
 
 LISTING_PROPERTY_TYPE
 ---------------------
 This table holds the details of the type of properties available in Airbnb.
+
+![property](https://user-images.githubusercontent.com/63420444/78941140-60cef080-7ab7-11ea-81a9-cd5fc8318709.JPG)
+
 
 
 LISTING_ROOM_TYPE
@@ -100,29 +108,48 @@ LISTING_ROOM_TYPE
 This table holds the details of the type of rooms available in Airbnb.
 
 
+![room](https://user-images.githubusercontent.com/63420444/78941215-822fdc80-7ab7-11ea-88b1-a419a8dab63e.JPG)
+
+
 
 DAG DESIGN
 ==========
 
 Description       : AIRBNB_DAG
+
 schedule_interval : Daily
+
 Start Date        : 08-Apr-2020
+
 Catchup           : False
+
 depends_on_past   : False
+
 Retries           : 3 times (Every 5 mins)
+
 
 ![DAG](https://user-images.githubusercontent.com/63420444/78940160-b0142180-7ab5-11ea-94b7-a13013988f41.JPG)
 
 Create Tables            : This step creates all the tables needed for the ETL process.
+
 Stage Listing            : This step loads all the listing data into the staging_listings table.
+
 Stage Reviews            : This step loads all the listing data into the staging_reviews table.
+
 Load listings fact table : This step loads the fact table LISTINGS.
+
 Load property dim table  : This step loads the dim table LISTING_PROPERTY_TYPE.
+
 Load hosts dim table     : This step loads the dim table HOSTS.
+
 Load room dim table      : This step loads the dim table LISTING_ROOM_TYPE
+
 Load address dim table   : This step loads the dim table LISTING_ADDRESS
+
 Load reviews dim table   : This step loads the dim table LSITING_REVIEWS
-RUn data quality checks  : This step runs the data quality checks on fact and sim tables.
+
+Run data quality checks  : This step runs the data quality checks on fact and sim tables.
+
 
 Python Files
 ============
