@@ -70,6 +70,7 @@ LISTINGS
 
 This table records all the objects that are listed. It contains details like lisitngId, ListingType, HostId  etc.
 
+![listings](https://user-images.githubusercontent.com/63420444/78941433-f8ccda00-7ab7-11ea-9608-cabe70405d8c.JPG)
 
 
 
